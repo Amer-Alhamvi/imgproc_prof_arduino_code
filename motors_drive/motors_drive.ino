@@ -1,25 +1,59 @@
 #include <AFMotor.h>
+char input
 
-AF_DCMotor motor(2, MOTOR12_64KHZ); // create motor #2, 64KHz pwm
+AF_DCMotor motorL1(1, MOTOR12_64KHZ); // create motor #1, 64KHz pwm
+AF_DCMotor motorL2(2, MOTOR12_64KHZ); // create motor #2, 64KHz pwm
+AF_DCMotor motorR1(3, MOTOR34_64KHZ); // create motor #3, 64KHz pwm
+AF_DCMotor motorR2(4, MOTOR34_64KHZ); // create motor #4, 64KHz pwm
 
 void setup() {
   Serial.begin(9600);           // set up Serial library at 9600 bps
   Serial.println("Motor test!");
   
-  motor.setSpeed(200);     // set the speed to 200/255
+  motor.setSpeed(255);     // set the speed to 200/255
 }
 
 void loop() {
-  Serial.print("tick");
-  
-  motor.run(FORWARD);      // turn it on going forward
-  delay(1000);
+  if(Serial.available()){
+    input = Serial.read();
 
-  Serial.print("tock");
-  motor.run(BACKWARD);     // the other way
-  delay(1000);
-  
-  Serial.println("tack");
-  motor.run(RELEASE);      // stopped
-  delay(1000);
+    switch (input){
+      
+      case "w":
+      motorL1.run(FORWARD);
+      motorL2.run(FORWARD);
+      motorR1.run(FORWARD);
+      motorR2.run(FORWARD);
+      break;
+      
+      case "s":
+      motorL1.run(BACKWARD);
+      motorL2.run(BACKWARD);
+      motorR1.run(BACKWARD);
+      motorR2.run(BACKWARD);
+      break;
+      
+      case "a":
+      motorL1.run(FORWARD);
+      motorL2.run(FORWARD);
+      motorR1.run(BACKWARD);
+      motorR2.run(BACKWARD);
+      break;
+      
+      case "d":
+      motorL1.run(BACKWARD);
+      motorL2.run(BACKWARD);
+      motorR1.run(FORWARD);
+      motorR2.run(FORWARD);
+      break;
+
+      default:
+      motorL1.run(RELEASE);
+      motorL2.run(RELEASE);
+      motorR1.run(RELEASE);
+      motorR2.run(RELEASE);
+      break;
+      
+    }
+  }
 }
