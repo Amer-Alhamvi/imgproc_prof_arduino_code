@@ -1,0 +1,2 @@
+cv_basics
+-DCATKIN_DEVEL_PREFIX=/home/jetson/cv_basics/devel -DCMAKE_INSTALL_PREFIX=/home/jetson/cv_basics/install -G Unix Makefiles
