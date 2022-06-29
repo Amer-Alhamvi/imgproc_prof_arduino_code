@@ -1,1 +1,3 @@
 # imgproc_prof_arduino_code
+To compile arduino files, for rosserial make sure to copy i2cdevlib and mpu6050 library files to arduino libraries folder, and run the rosserial script to generate rosserial library for Arduino. A toturial is available at: https://github.com/superjax/tinyIMU_arduino
+For motors install AF_Motor Arduino library as in the link: https://learn.adafruit.com/adafruit-motor-shield/library-install
