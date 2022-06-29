@@ -78,7 +78,7 @@ def publish_message():
         # Publish the image.
         # The 'cv2_to_imgmsg' method converts an OpenCV
         # image to a ROS image message
-        pub.publish(br.cv2_to_imgmsg(frame, 'rgb8'))
+        pub.publish(br.cv2_to_imgmsg(frame, 'bgr8'))
 
              
       # Sleep just enough to maintain the desired rate
